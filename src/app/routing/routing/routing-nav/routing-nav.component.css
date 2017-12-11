@@ -1,0 +1,83 @@
+
+	
+
+        #routing-nav {
+            margin-top: 25px;
+            height: 52px;
+            color: #eee;
+            font-family: "BenchNine", "sans-serif";
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            font-size: 13px;
+        }
+
+        #routing-nav .navbar {
+            z-index: 499;
+            border-radius: 0 !important;
+            background: #eee;
+        }
+
+        
+         #routing-nav .nav-item {
+             background: #eee;
+                padding-left: 5px;
+            font-weight: 400;
+         }
+
+        /* LINKS */
+        #routing-nav a {
+            color: #000;
+            text-transform: uppercase;
+        }
+
+        #routing-nav a span {
+            vertical-align: middle;
+        }
+
+        #routing-nav a:hover {
+            color: rgb(250, 208, 0);
+        }
+
+        #routing-nav a.active{
+            /*color: rgb(250, 208, 0);
+            text-decoration: underline;*/
+        }
+
+        #routing-nav a.active span {
+            border-bottom: 1px solid #000;
+            padding-bottom: 2px;
+        }
+
+       
+
+        #routing-nav a.active i {
+            text-decoration: none !important;
+        }
+
+        .navbar-toggler {
+            width: 2.5em;
+            height: 2em;
+            padding: 0.5rem 0.75rem;
+            font-size: 1.25rem;
+            line-height: 1;
+
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .mtx-icon {
+            vertical-align: middle;
+        }
+
+        	/* Large devices (desktops, 992px and up) */
+		@media (min-width: 992px) {  
+            
+        }
+
+        /* Extra large devices (large desktops, 1200px and up) */
+        @media (min-width: 1200px) {
+            #routing-nav {
+                font-size: 17px;
+            }
+        }

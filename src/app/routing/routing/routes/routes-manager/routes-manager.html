@@ -1,0 +1,191 @@
+<div class="wrapper">
+
+    <mtx-header-full [selectedTab]="'ROUTING'"></mtx-header-full>
+
+    <mtx-routing-nav></mtx-routing-nav>
+
+    <div id="route-manager">
+        <div class="container-fluid">
+
+            <mtx-loading-dialog [watch]="loadingRequest"></mtx-loading-dialog>
+
+            <!-- ALERTS -->
+            <div class="row">
+                <div class="col-12 col-lg-6 offset-lg-3">
+                    <mtx-alert-display [alerts]="messages"></mtx-alert-display>
+                </div>
+            </div>
+
+            <!-- TITLE BAR -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="banner">
+                        <i class="mtx-icon mtx-icon-event-history"></i> Route Designer
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-2" id="filters">
+                    <div class="container  bg-off-white">
+
+                        <div class="row filter-section-header">
+                            <div class="col-12">Mode</div>
+                        </div>
+
+                        <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
+                            <div class="col-12 text-center">
+                                <span>
+                                    <input type="radio" [(ngModel)]="mode" name="mode" value="auto">Auto &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" [(ngModel)]="mode" name="mode" value="manual">Manual
+                                </span>
+                            </div>
+                        </div>
+
+                        <form [formGroup]="routeForm" (ngSubmit)="save()" [ngClass]="{ 'ng-submitted': routeForm.submitted === true }">
+                            <div class="row filter-section-header">
+                                <div class="col-12">Route Details</div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px;">
+
+                                <div class="col-12">
+
+                                    <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <span class="float-lg-right">
+                                            <mtx-validity-indicator [control]="routeForm.controls.name" [submitted]="routeForm.submitted"></mtx-validity-indicator>
+                                        </span>
+                                        <input class="form-control form-control-sm" formControlName="name" aria-describedby="basic-addon2" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="long_name">Long Name:</label>
+                                        <span class="float-lg-right">
+                                            <mtx-validity-indicator [control]="routeForm.controls.long_name" [submitted]="routeForm.submitted"></mtx-validity-indicator>
+                                        </span>
+                                        <input class="form-control form-control-sm" formControlName="long_name" aria-describedby="basic-addon2" />
+                                        <mtx-validation-messages [control]="routeForm.controls['long_name']" [submitted]="routeForm.submitted"></mtx-validation-messages>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="long_name">URL:</label>
+                                        <span class="float-lg-right">
+                                            <mtx-validity-indicator [control]="routeForm.controls.url" [submitted]="routeForm.submitted"></mtx-validity-indicator>
+                                        </span>
+                                        <input class="form-control form-control-sm" formControlName="url" aria-describedby="basic-addon2" />
+                                        <mtx-validation-messages [control]="routeForm.controls['url']" [submitted]="routeForm.submitted"></mtx-validation-messages>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="type">Type:</label>
+                                        <span class="float-lg-right">
+                                            <mtx-validity-indicator [control]="routeForm.controls.type" [submitted]="routeForm.submitted"></mtx-validity-indicator>
+                                        </span>
+                                        <select id="type" class="form-control form-control-sm" formControlName="type">
+                                            <option value="">SELECT</option>
+                                            <option *ngFor="let t of typeOptions" [ngValue]="t.code">{{t.name}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="color">Color:</label>
+                                        <div style="height: 25px; width: 100%" class="form-control form-control-sm" [colorPicker]="routeForm.controls['color'].value"
+                                            (colorPickerChange)="routeForm.controls['color'].setValue($event); changeRouteColor()"
+                                            [cpAlphaChannel]="'disabled'" [cpOKButton]="true" [cpPosition]="'bottom'" [style.background]="routeForm.controls['color'].value">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="color">Text Color:</label>
+                                        <div style="height: 25px; width: 100%" class="form-control form-control-sm" [colorPicker]="routeForm.controls['text_color'].value"
+                                            (colorPickerChange)=" routeForm.controls['text_color'].setValue($event);" [cpAlphaChannel]="'disabled'"
+                                            [cpOKButton]="true" [cpPosition]="'bottom'" [style.background]="routeForm.controls['text_color'].value">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Preview">Preview:</label>
+                                        <div [style.background]="routeForm.value.color" [style.color]="routeForm.value.text_color" style="padding: 5px;">
+                                            {{ routeForm.value.name ? routeForm.value.name : 'Route Name' }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="description">Description:</label>
+                                        <span class="float-lg-right">
+                                            <mtx-validity-indicator [control]="routeForm.controls.description" [submitted]="routeForm.submitted"></mtx-validity-indicator>
+                                        </span>
+                                        <textarea class="form-control form-control-sm" id="route_description" rows="10" formControlName="description" placeholder="Enter notes or information about this route"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row filter-section-header">
+                                <div class="col-12">Save Route</div>
+                            </div>
+
+                            <div class="row" style="padding-top: 15px; padding-bottom: 15px;">
+                                <div class="col-12 text-center">
+                                    <button class="btn" id="save-btn">Save</button>
+                                    <span class="btn" (click)="clearMap()" id="clear-btn">Clear</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- DATA -->
+
+                <div class="col-12 col-lg-10 bg-white" id="content">
+                    <div class="bg-off-white" style="height: 100%;">
+                        <mtx-base-map></mtx-base-map>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-lg-12 bg-white" id="event-list">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Distance</th>
+                                    <th>Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let leg of routeLegs">
+                                    <td>
+                                        <a (click)="removeLeg(leg)" id="remove-leg">
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ leg.origin_stop.name }}
+                                    </td>
+                                    <td>
+                                       <span *ngIf="leg.destination_stop">{{ leg.destination_stop.name }}</span>
+                                    </td>
+                                    <td>
+                                        {{ leg.distance }} mi.
+                                    </td>
+                                    <td>
+                                        {{ leg.formatted_duration }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+</div>
+
+<mtx-footer></mtx-footer>

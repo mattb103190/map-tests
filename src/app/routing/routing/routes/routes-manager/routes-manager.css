@@ -1,0 +1,120 @@
+#route-manager {
+    margin-top: 10px;
+    padding-bottom: 25px;
+}
+
+#route-manager .actionbar {
+    background: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+#route-manager .actionbar a,a:active,a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.leg-description-row:active {
+    background-color: green;
+}
+
+.actions a,a:active,a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+#route-manager .banner {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0061af;
+    background: rgb(238, 238, 238);
+    padding-left: 10px;
+}
+
+#vehicle-list {
+    font-size: 12px;
+    height: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#content {
+    margin-top: 25px;
+}
+
+.form-check-input, .form-control {
+    border-radius: 0px;
+}
+
+#route-designer .banner {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0061af;
+    background: rgb(238, 238, 238);
+    padding-left: 10px;
+}
+
+.filter-section-header {
+    background-color: #fad000;
+    border-bottom: 1px solid #c90;
+    padding: 5 0 5 5;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.filter-section-content {
+    margin-top: 10px;
+    padding-bottom: 10px;
+
+
+}
+
+.btn {
+    background: #000;
+    color: #fff;
+    padding: 3px 6px 3px 6px;
+    border-radius: 0;
+}
+
+.bg-off-white {
+    background: rgb(238, 238, 238);
+}
+
+:host >>> .map { 
+    height: 450px; 
+    width: 99.95%; 
+    z-index: 0; 
+}
+
+:host >>> .leaflet-routing-container {
+    display: none;
+}
+
+        @media (min-width: 544px) { }
+
+		/* Medium devices (tablets, 768px and up) */
+		@media (min-width: 768px) {  }
+
+		/* Large devices (desktops, 992px and up) */
+		@media (min-width: 992px) {  
+            :host >>> .map { 
+                height: 100%; 
+                width: 99.95%; 
+                z-index: 0; 
+            } 
+
+            #filters {
+                padding-right: 0px;
+            }
+
+            #content {
+                padding-left: 0px;
+                margin-top: 0px;
+            }
+        }
+
+		/* Extra large devices (large desktops, 1200px and up) */
+		@media (min-width: 1200px) { }
+
