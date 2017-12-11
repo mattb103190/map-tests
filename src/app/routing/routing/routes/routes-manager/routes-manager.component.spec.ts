@@ -113,9 +113,11 @@ fdescribe('RoutesManagerComponent', () => {
         });
     }));
 
-    it(`should clear map when button is clicked`, fakeAsync(done => {
-        this.compiled.querySelector('#clear-btn').click();
-        expect(this.compInstance.clearMap).toHaveBeenCalled();
-        done();
+    it(`should clear map when button is clicked`, (done => {
+        this.compInstance.mapComponent.getNativeInstance().then(map => {
+            this.compiled.querySelector('#clear-btn').click();
+            expect(this.compInstance.clearMap).toHaveBeenCalled();
+            done();
+        });
     }));
 });
