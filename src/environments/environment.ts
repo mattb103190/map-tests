@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiBaseUrl: 'https://mtxapi.angeltrax.com/1.0',
+  googleMapsApiKey: 'AIzaSyAKPEbmAod-EdEGvwvZyyoVjuvxajED9mE',
+  raven: null
 };

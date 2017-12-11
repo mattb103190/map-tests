@@ -10,6 +10,7 @@ import 'moment-duration-format';
 import 'leaflet-contextmenu';
 import { Point } from 'leaflet';
 import * as L from 'leaflet';
+import 'rxjs/add/observable/forkJoin';
 
 import { StopService, Stop, Route, RouteService } from '../../../../api/index';
 import { AlertMessage, SubmittableFormGroup, LoggerService } from '../../../../shared/index';

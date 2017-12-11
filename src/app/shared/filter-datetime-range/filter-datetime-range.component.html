@@ -1,0 +1,114 @@
+<div [formGroup]="tgtFormGroup" *ngIf="tgtFormGroup" id="date-time-range-filter">
+        <div class="row filter-section-header">
+            <div class="col-lg-12">
+                Date/Time
+    
+                <span style="line-height: 24px;" class="float-lg-right">
+                    <!--<mtx-validity-indicator [showErrorsOnly]="true" [control]="tgtFormGroup.controls.start_date" [submitted]="tgtFormGroup.submitted"
+                        *ngIf="tgtFormGroup.controls['start_date'].getError('invalidDate') || tgtFormGroup.controls['start_date'].valid"></mtx-validity-indicator>
+    
+                    <mtx-validity-indicator  [showErrorsOnly]="true" [control]="tgtFormGroup.controls.start_date" [submitted]="tgtFormGroup.submitted"
+                        *ngIf="tgtFormGroup.controls['start_date'].getError('invalidTime') || tgtFormGroup.controls['start_date'].valid"></mtx-validity-indicator>
+    
+                    <mtx-validity-indicator [showErrorsOnly]="true" [control]="tgtFormGroup.controls.end_date" [submitted]="tgtFormGroup.submitted"
+                        *ngIf="tgtFormGroup.controls['end_date'].getError('invalidDate') || tgtFormGroup.controls['end_date'].valid"></mtx-validity-indicator>
+    
+                    <mtx-validity-indicator  [showErrorsOnly]="true" [control]="tgtFormGroup.controls.end_date" [submitted]="tgtFormGroup.submitted" 
+                        *ngIf="tgtFormGroup.controls['end_date'].getError('invalidTime')|| tgtFormGroup.controls['end_date'].valid"></mtx-validity-indicator>-->
+                </span>
+            </div>
+        </div>
+    
+        <div class="row form-group" style="margin-top: 10px">
+            <label for="filter_datetime_start_date" class="col-lg-5 col-12 col-form-label col-form-label-sm">Start Date:</label>
+            <div class="col-lg-7">
+                <div id="start-date col-12">
+                    <input placeholder="YYYY-MM-DD" name="dp" [(ngModel)]="dateTimeFilters.start_date" (ngModelChange)="onStartDatePickerChange($event)"
+                        class="form-control form-control-sm" [ngModelOptions]="{standalone: true}" ngbDatepicker #startDate="ngbDatepicker" (click)="startDate.toggle()"
+                        [closePopoverOnClickOutside]="startDate" firstDayOfWeek="7"
+                        id="filter_datetime_start_date" [ngClass]="{ 'ng-invalid' : tgtFormGroup.controls['start_date'].hasError('invalidDate') }" />
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label for="filter_datetime_end_date" class="col-lg-5 col-12 col-form-label col-form-label-sm">End Date:</label>
+    
+            <div class="col-lg-7 col-12">
+                <div id="end-date">
+                    <input placeholder="YYYY-MM-DD" name="dp" ngbDatepicker [(ngModel)]="dateTimeFilters.end_date" (ngModelChange)="onEndDatePickerChange($event)"
+                        #endDate="ngbDatepicker" [ngModelOptions]="{standalone: true}" (click)="endDate.toggle()" id="filter_datetime_end_date"
+                        [closePopoverOnClickOutside]="endDate"  firstDayOfWeek="7"
+                        class="form-control form-control-sm" />
+                </div>
+            </div>
+        </div>
+    
+    
+        <!--<div class="row form-group" style="margin-top: 10px">
+            <label for="filter_datetime_start_time" class="col-lg-5 col-12 col-form-label col-form-label-sm">Start Time:</label>
+            <div class="col-lg-7">
+                <div id="start-date col-12">
+                    <input id="filter_datetime_start_time" placeholder="HH:MM:SS" class="form-control form-control-sm" [(ngModel)]="dateTimeFilters.start_time"
+                        (ngModelChange)="onStartTimeEntryChange($event)" [ngModelOptions]="{standalone: true}" (focus)="tgtFormGroup.controls['start_date'].markAsTouched();"
+                        [ngClass]="{ 'ng-invalid' : tgtFormGroup.controls['start_date'].hasError('invalidTime'), 'ng-valid' : !tgtFormGroup.controls['start_date'].hasError('invalidTime') }" />
+    
+                    <mtx-validation-messages *ngIf="tgtFormGroup.controls.start_date.hasError('invalidTime')" [control]="tgtFormGroup.controls.start_date" [submitted]="tgtFormGroup.submitted"></mtx-validation-messages>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label for="filter_datetime_end_time" class="col-lg-5 col-12 col-form-label col-form-label-sm">End Time:</label>
+            <div class="col-lg-7 col-12">
+                <div id="end-date">
+                    <input id="filter_datetime_end_time" placeholder="HH:MM:SS" class="form-control form-control-sm" [(ngModel)]="dateTimeFilters.end_time"
+                        (ngModelChange)="onEndTimeEntryChange($event)" [ngModelOptions]="{standalone: true}" 
+                        [ngClass]="{ 'ng-invalid' : tgtFormGroup.controls['end_date'].hasError('invalidTime'), 'ng-valid' : !tgtFormGroup.controls['end_date'].hasError('invalidTime') }" />
+    
+                    <mtx-validation-messages *ngIf="tgtFormGroup.controls.end_date.hasError('invalidTime')" [control]="tgtFormGroup.controls.start_date" [submitted]="tgtFormGroup.submitted"></mtx-validation-messages>
+                        
+                </div>
+            </div>
+        </div>-->
+        <!--<div class="row">
+            <div class="col-lg-6">
+                <span style="vertical-align:middle; line-height: 75px;">
+                    Start Time:
+                </span>
+            </div>
+            <div class="col-lg-6">
+                <ngb-timepicker [(ngModel)]="dateTimeFilters.start_time" (ngModelChange)="onStartTimePickerChange($event)" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+            </div>
+        </div>
+        <div class="row" style="height: 75px;">
+            <div class="col-lg-6" style="padding-top: 35px; height: 45px;">
+            <span style="vertical-align:middle; line-height: 75px;">
+                    End Time:
+                </span>
+            </div>
+            <div class="col-lg-6" style="height: 90px;">
+                <ngb-timepicker [(ngModel)]="dateTimeFilters.end_time" (ngModelChange)="onEndTimePickerChange($event)" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+            </div>
+        </div>-->
+        <div class="row filter-section-content">
+            <div class="col-12">
+                <span class="col-form-label-sm">Start/End Time:</span>
+            </div>
+        </div>
+        <div class="row filter-section-content">
+            <div class="col-12" style="padding-right: 25px; font-size: 12px;">
+                <nouislider name="timeSlider" [(ngModel)]="timeRangeFilters" (ngModelChange)="onSliderChange($event)" [ngModelOptions]="{standalone: true}"
+                    [config]="timeSliderConfig" (slide)="onSlide($event)"></nouislider>
+    
+                    <!--<br/>
+                    {{ tgtFormGroup.value.start_date }} 
+                    <br/>
+                    {{ tgtFormGroup.value.end_date }} -->
+            </div>
+        </div>
+        <div class="row" style="font-size: 12px; padding-bottom: 5px;">
+            <div class="col-6"> {{ displayStartTime }}</div>
+            <div class="col-6 text-right"> {{ displayEndTime }}</div>
+        </div>
+    
+    </div>

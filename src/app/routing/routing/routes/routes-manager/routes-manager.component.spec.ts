@@ -9,14 +9,13 @@ import { Observable } from 'rxjs/Observable';
 import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ApiModule, SessionService, OrganizationService, MockOrganizationService } from '../../../../api/index';
+import { ApiModule, SessionService } from '../../../../api/index';
 import { SharedModule } from '../../../../shared/shared.module';
 import { RoutesManagerComponent } from './routes-manager.component';
-import { RouteService, StopService, MockRouteService, MockStopService } from '../../../../api/index';
+import { RouteService, StopService, MockRouteService, MockStopService, OrganizationService, MockOrganizationService } from '../../../../api/index';
 import { MapModule } from '../../../../map/map.module';
 import { ColorPickerModule } from 'ngx-color-picker';
 import * as L from 'leaflet';
-import { RoutingNavComponent } from '../../routing-nav/routing-nav.component';
 
 fdescribe('RoutesManagerComponent', () => {
     beforeEach(async(() => {
@@ -35,8 +34,7 @@ fdescribe('RoutesManagerComponent', () => {
                 MapModule
             ],
             declarations: [
-                RoutesManagerComponent,
-                RoutingNavComponent
+                RoutesManagerComponent
             ]
         }).compileComponents();
     }));

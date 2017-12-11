@@ -1,0 +1,135 @@
+#date-time-range-filter {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.filter-section-header {
+    background-color: #fad000;
+    border-bottom: 1px solid #c90;
+    padding: 5 0 5 5;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.filter-section-content {
+    margin-top: 10px;
+}
+
+.filter-section-content:last-of-type {
+    padding-bottom: 10px;
+}
+
+#filters .container {
+    padding: 0 0 0 0;
+}
+
+.form-control-sm { 
+    border-radius: 0px;
+    font-size: 12px;
+}
+
+.col-form-label-sm {
+    font-size: 12px;
+    padding-right: 10px;
+}
+
+.row.form-group {
+    padding: 0 0 0 0;
+    margin-bottom: 3px;
+}
+
+input.ng-touched.ng-invalid { 
+    background: rgba(187,0,0, 0.3); 
+    border-bottom: 3px solid #bb0000; 
+}
+
+form.ng-submitted input.ng-invalid, form.ng-submitted select.ng-invalid, form.ng-submitted textarea.ng-invalid { 
+        background: rgba(187,0,0, 0.3); 
+        border-bottom: 3px solid #bb0000; 
+}
+
+:host >>> ngb-datepicker {
+    top: 29px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    z-index: 9;
+    font-size: 12px;
+    border-radius: 0;
+}
+
+:host >>> ngbdatepickerdayview {
+    border-radius: 0;
+}
+
+:host >>> .ngb-dp-header {
+    background: #fad000;
+    border-radius: 0;
+}
+
+:host >>> .ngb-dp-months {
+    background: #eee
+}
+
+:host >>> .ngb-dp-week {
+    line-height: 28px;
+    width: 100%;
+}
+
+:host >>> .ngb-dp-day {
+    background: rgb(238, 238, 238) !important;
+    width: 14%;
+    height: 28px;
+    border-radius: 0;
+}
+
+:host >>> .ngb-dp-day > div:first-of-type {
+    border-radius: 0;
+}
+
+
+/* NoUiSlider */
+:host >>> .noUi-target.noUi-ltr.noUi-horizontal {
+    height: 4px;
+}
+
+:host >>> .noUi-base {
+    top: 1px;
+}
+
+:host >>> .noUi-handle {
+    left: 0px !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 0;
+    background-color: #000;
+    border: 0;
+    box-shadow: none;
+}
+
+:host >>> .noUi-handle:before,
+:host >>> .noUi-handle:after {
+    display: none;
+}
+
+:host >>> .noUi-handle:focus {
+    outline: none;
+}
+
+
+
+:host >>> .noUi-tooltip {
+    background-color: #fff;
+    border-color:  transparent;
+}
+
+:host >>> .noUi-active {
+    z-index: 100;
+    background-color: #000;
+}
+
+:host >>> .noUi-connect {
+    top: -2px;
+    height: 4px;
+    background-color: #0061af;
+}

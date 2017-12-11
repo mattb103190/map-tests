@@ -1,0 +1,28 @@
+#confirmationModal {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.modal-header { 
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    background: #666;
+    border-bottom: 3px solid #FDD430;
+    font-size: 14px;
+    letter-spacing: 1pt;
+}
+
+
+.btn {
+    background: #000;
+    color: #fff;
+    padding: 3px 6px 3px 6px;
+    border-radius: 0;
+}
+
+.btn:active {
+    color: #fad000;
+}
