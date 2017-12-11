@@ -1624,6 +1624,14 @@ export class MockRouteService {
         });
     }
 
+    getById(id: number): Observable<Route> {
+        for (let i = 0; i < this.data.length; i++) {
+            if (id === this.data[i].id) {
+                return Observable.of(this.data[i]);
+            }
+        }
+    }
+
     getOptions(flushCache: boolean): Observable<Route[]> {
         if (flushCache) { this.clearCache(); }
 

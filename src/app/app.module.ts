@@ -3,7 +3,6 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { AuthGuard } from './auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
 import { ApiModule } from './api/api.module';
 import { SharedModule } from './shared/shared.module';
@@ -15,39 +14,6 @@ import { environment } from '../environments/environment';
 
 declare var require: any;
 const { version: appVersion } = require('../../package.json');
-
-export class RavenErrorHandler implements ErrorHandler {
-    handleError(err: any): void {
-        Raven.captureException(err.originalError || err);
-    }
-}
-
-export class DevErrorHandler implements ErrorHandler {
-    handleError(err: any): void {
-        console.log(err);
-    }
-}
-
-export function errorHandlerServiceFactory() {
-    try {
-
-        if (environment.raven) {
-
-            Raven
-                .config(environment.raven, {
-                    release: appVersion
-                })
-                .install();
-
-            return new RavenErrorHandler();
-        } else {
-            return new DevErrorHandler();
-        }
-
-    } catch (err) {
-        return new DevErrorHandler();
-    }
-}
 
 @NgModule({
     declarations: [
@@ -68,12 +34,6 @@ export function errorHandlerServiceFactory() {
         AppRoutingModule
     ],
     providers: [
-        AuthGuard,
-        {
-            provide: ErrorHandler,
-            useFactory: errorHandlerServiceFactory,
-            deps: []
-        },
     ],
     bootstrap: [AppComponent]
 })

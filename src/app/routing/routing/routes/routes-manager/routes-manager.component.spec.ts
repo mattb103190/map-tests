@@ -77,28 +77,18 @@ fdescribe('RoutesManagerComponent', () => {
     });
 
     it(`should define component instance`, (done => {
-        expect(this.fixture.componentInstance).toBeDefined();
-        expect(this.compInstance.ngOnInit).toHaveBeenCalled();
-        expect(this.routeService.getDropdownOptions).toHaveBeenCalled();
-
-        expect(this.fixture.componentInstance.messages).not.toBeNull();
-        expect(this.fixture.componentInstance.messages.length).toEqual(0);
-        done();
-    }));
-
-    it(`should call loadStops when map is ready`, (done) => {
         this.compInstance.mapComponent.getNativeInstance().then(map => {
-            expect(this.compInstance.loadStops).toHaveBeenCalled();
-            // if an id is being loaded - break out into another test
-            // expect(this.compInstance.loadRoute).toHaveBeenCalled();
-            // expect(this.compInstance.setRoute).toHaveBeenCalled();
-            // expect(this.compInstance.createLeg).toHaveBeenCalled();
-            // expect(this.compInstance.updateLegDurationAndDistance).toHaveBeenCalled();
+            expect(this.fixture.componentInstance).toBeDefined();
+            expect(this.compInstance.ngOnInit).toHaveBeenCalled();
+            expect(this.routeService.getDropdownOptions).toHaveBeenCalled();
+
+            expect(this.fixture.componentInstance.messages).not.toBeNull();
+            expect(this.fixture.componentInstance.messages.length).toEqual(0);
             done();
         });
-    });
+    }));
 
-    it(`should contain the correct leg when clicking stops`, (done) => {
+    it(`should contain the correct leg when clicking stops`, (done => {
         this.compInstance.mapComponent.getNativeInstance().then(map => {
             this.compInstance.stopLayer.getLayers()[0].fire('click', { latlng: <any>([31.2284724615694, -85.4321765899658]) });
             this.compInstance.stopLayer.getLayers()[1].fire('click', { latlng: <any>([31.2490940369638, 85.4247093200683]) });
@@ -121,59 +111,11 @@ fdescribe('RoutesManagerComponent', () => {
 
             done();
         });
-    });
+    }));
 
-    it(`should clear map when button is clicked`, (done => {
+    it(`should clear map when button is clicked`, fakeAsync(done => {
         this.compiled.querySelector('#clear-btn').click();
         expect(this.compInstance.clearMap).toHaveBeenCalled();
         done();
     }));
-
-    // it(`create correct leg, call save/remove/clear`, fakeAsync(() => {
-    //     this.compInstance.mapComponent.getNativeInstance().then(map => {
-
-    //         this.compInstance.stopLayer.getLayers()[0].fire('click', { latlng: <any>([31.2284724615694, -85.4321765899658]) });
-    //         this.compInstance.stopLayer.getLayers()[1].fire('click', { latlng: <any>([31.2490940369638, 85.4247093200683]) });
-
-    //         expect(this.compInstance.onStopClicked).toHaveBeenCalled();
-
-    //         expect(this.fixture.componentInstance.routeLegs[0].origin_stop).toEqual(
-    //             { id: 1, name: 'Org1_stop1', code: 'o1-one', description: 'org1 first stop', url: null, location_type: 'stop', has_wheelchair_boarding: null, geometry: Object({ type: 'Point', coordinates: [-85.4321765899658, 31.2284724615694] }), boundary: Object({ type: 'Polygon', coordinates: [[[-85.4324126243591, 31.2282339294713], [-85.4318976402283, 31.2282339294713], [-85.4318976402283, 31.2288486071163], [-85.4324126243591, 31.2288486071163], [-85.4324126243591, 31.2282339294713]]] }) }
-    //         );
-
-    //         expect(this.fixture.componentInstance.routeLegs[0].destination_stop).toEqual(
-    //             { id: 2, name: 'Org1_stop2', code: 'o1-two', description: 'org1 second stop', url: null, location_type: 'stop', has_wheelchair_boarding: null, geometry: Object({ type: 'Point', coordinates: [-85.4247093200683, 31.2490940369638] }), boundary: Object({ type: 'Polygon', coordinates: [[[-85.4248702526092, 31.2489472800928], [-85.4245215654373, 31.2489472800928], [-85.4245215654373, 31.2493416886665], [-85.4248702526092, 31.2493416886665], [-85.4248702526092, 31.2489472800928]]] }) }
-    //         );
-
-    //         expect(this.compInstance.onStopClicked).toHaveBeenCalled();
-    //         expect(this.compInstance.appendLegToRoute).toHaveBeenCalled();
-    //         expect(this.compInstance.updateLegDurationAndDistance).toHaveBeenCalled();
-
-    //         this.map.click();
-    //         expect(this.compInstance.onMapClicked).toHaveBeenCalled();
-    //         expect(this.compInstance.addPointToEndOfLegPath).toHaveBeenCalled();
-    //         expect(this.compInstance.getCoordsPriorToNewWaypoint).toHaveBeenCalled();
-    //         expect(this.compInstance.findPath).toHaveBeenCalled();
-    //         expect(this.compInstance.addWaypointToLegAtIdx).toHaveBeenCalled();
-    //         expect(this.compInstance.createWaypoint).toHaveBeenCalled();
-
-    //         this.compInstance.routeLayer.getLayers()[0].fire('click', { latlng: <any>([32.2284724615694, -85.4321765899658]) });
-    //         expect(this.compInstance.convertPointToWaypoint).toHaveBeenCalled();
-    //         expect(this.compInstance.findNearestSegmentOnPath).toHaveBeenCalled();
-    //         expect(this.compInstance.addWaypointToLegAtIdx).toHaveBeenCalled();
-    //         expect(this.compInstance.createWaypoint).toHaveBeenCalled();
-
-    //         this.compInstance.waypointLayer.getLayers()[0].fire('drag', { latlng: <any>([32.2284724615691, -85.4321765899658]) });
-    //         expect(this.compInstance.OnWaypointMoved).toHaveBeenCalled();
-    //         expect(this.compInstance.OnWaypointMoveCompleted).toHaveBeenCalled();
-    //         expect(this.compInstance.findClosestPointOnPathForLeg).toHaveBeenCalled();
-    //         expect(this.compInstance.updateLegDurationAndDistance).toHaveBeenCalled();
-
-    //         this.compiled.querySelector('#save-btn').click();
-    //         expect(this.compInstance.save).toHaveBeenCalled();
-
-    //         this.compiled.querySelector('#remove-leg').click();
-    //         expect(this.compInstance.removeLeg).toHaveBeenCalled();
-    //     });
-    // }));
 });

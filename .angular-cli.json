@@ -19,7 +19,14 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/nouislider/distribute/nouislider.min.css",
+        "../node_modules/leaflet/dist/leaflet.css",
+        "../node_modules/leaflet.fullscreen/Control.FullScreen.css",
+        "../node_modules/leaflet-search/dist/leaflet-search.min.css",
+        "../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css",
+        "../node_modules/leaflet-draw/dist/leaflet.draw.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
